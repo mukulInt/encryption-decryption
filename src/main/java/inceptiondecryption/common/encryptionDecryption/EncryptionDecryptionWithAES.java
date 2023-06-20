@@ -1,4 +1,6 @@
-package inceptiondecryption.common.intercepter;
+package inceptiondecryption.common.encryptionDecryption;
+
+import org.springframework.stereotype.Component;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -9,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
+@Component
 public class EncryptionDecryptionWithAES {
 
     private static SecretKey generateSecretKey(String keyString) throws Exception {
