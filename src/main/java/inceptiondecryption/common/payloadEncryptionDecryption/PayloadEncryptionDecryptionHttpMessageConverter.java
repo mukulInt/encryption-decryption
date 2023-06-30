@@ -16,7 +16,9 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PayloadEncryptionDecryptionHttpMessageConverter extends AbstractHttpMessageConverter<Object> {
 
     @Autowired
@@ -46,10 +48,21 @@ public class PayloadEncryptionDecryptionHttpMessageConverter extends AbstractHtt
     protected Object readInternal(Class<? extends Object> clazz,
                                   HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 //        Instant nowInstant = CommonUtils.startTime();
+        System.out.println("+++++++++++51"+inputMessage.getBody());
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
 
-        EncDataRequest encryptData=  objectMapper.readValue(inputMessage.getBody(), EncDataRequest.class);
+//        EncDataRequest encryptData=  objectMapper.readValue(inputMessage.getBody(), EncDataRequest.class);
+        EncDataRequest encryptData = null;
+        try{
+             encryptData = objectMapper.readValue(inputMessage.getBody(), EncDataRequest.class);
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         String encData= encryptData.getEncData();
         Object obj = null;
         try {
