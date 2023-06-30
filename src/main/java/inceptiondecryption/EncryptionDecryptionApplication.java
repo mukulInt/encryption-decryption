@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InceptionDecryptionApplication {
+public class EncryptionDecryptionApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InceptionDecryptionApplication.class, args);
+		SpringApplication.run(EncryptionDecryptionApplication.class, args);
 		System.out.println("yes");
 
 //		try {
